@@ -17,5 +17,5 @@ public interface BlogService {
 
     public BlogEntity delete(Long id);
 
-    public BlogEntity recover(Long id);
+    public BlogEntity restore(Long id);
 }

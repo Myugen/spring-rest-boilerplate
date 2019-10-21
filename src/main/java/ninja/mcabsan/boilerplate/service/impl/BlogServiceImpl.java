@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Optional;
 
 @Service
@@ -63,11 +64,13 @@ public class BlogServiceImpl implements BlogService {
                     .code("error.entity.isDeleted")
                     .build();
         }
+        blog.setDeletedBy("anonymous");
+        blog.setDeletedDate(Instant.now());
         return save(blog);
     }
 
     @Override
-    public BlogEntity recover(Long id) {
+    public BlogEntity restore(Long id) {
         BlogEntity blog = findOne(id);
         if (!blog.isDeleted()) {
             throw new CustomExceptionBuilder()
@@ -75,6 +78,8 @@ public class BlogServiceImpl implements BlogService {
                     .code("error.entity.isNotDeleted")
                     .build();
         }
+        blog.setDeletedBy(null);
+        blog.setDeletedDate(null);
         return save(blog);
     }
 

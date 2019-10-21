@@ -3,6 +3,8 @@ package ninja.mcabsan.boilerplate.error;
 import lombok.Getter;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @Getter
 public class CustomException extends RuntimeException {
@@ -11,6 +13,7 @@ public class CustomException extends RuntimeException {
     private final ErrorVM errorVM;
 
     public CustomException(Throwable e, String message, String code, String... params) {
-        errorVM = new ErrorVM(message, code, Arrays.asList(params));
+        List<String> paramsCollection = params != null ? Arrays.asList(params) : Collections.emptyList();
+        errorVM = new ErrorVM(message, code, paramsCollection);
     }
 }
