@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - property:
+      name: now
+      value: now()
+      dbms: postgresql
+  - property:
+      name: now
+      value: now()
+      dbms: mysql
+  - property:
+      name: now
+      value: sysdate
+      dbms: oracle
+
+  - changeSet:
+      id: 20191020190000
+      author: mcabsan
+      changes:
+        - createSequence:
+            sequenceName: seq_tb_blogs_id
+            startValue: 10
+        - createTable:
+            tableName: tb_blogs
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: content
+                  type: varchar(4000)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_date
+                  type: timestamp
+                  defaultValue: ${now}
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  defaultValue: ${now}
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: deleted_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: deleted_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+
