@@ -40,7 +40,7 @@ public class BlogRestApiController extends RestApiV1Controller {
         BlogEntity blog = blogMapper.toEntity(blogDTO);
         BlogEntity createdBlog = blogService.create(blog);
         BlogDTO result = blogMapper.toDto(createdBlog);
-        return ResponseEntity.created(new URI("/api/v1/blogs")).body(result);
+        return ResponseEntity.created(new URI(String.format("/api/v1/blogs/%s", result.getId()))).body(result);
     }
 
     @PutMapping

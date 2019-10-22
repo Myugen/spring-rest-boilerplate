@@ -20,8 +20,8 @@ public class BlogEntity extends AbstractAuditingAndLogicalDeletedEntity {
     private static final long serialVersionUID = 4450314587903076095L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tb_blogs")
-    @SequenceGenerator(name = "seq_tb_blogs", sequenceName = "seq_tb_blogs", allocationSize = 50, initialValue = 10)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tb_blogs_id")
+    @SequenceGenerator(name = "seq_tb_blogs_id", sequenceName = "seq_tb_blogs_id", allocationSize = 1, initialValue = 10)
     private Long id;
 
     @NotBlank
